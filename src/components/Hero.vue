@@ -59,12 +59,7 @@
           class="review-header__image"
         />
         <p class="review-header__name">{{ review.name }}</p>
-        <div class="review-header__svg-container">
-          <svg width="20" height="15" v-for="n in 5" :key="n">
-            <use href="/icons/icons.svg#icon-star" />
-          </svg>
-        </div>
-        <p class="review-header__comment">One of 500+ 5 Star Reviews Online</p>
+        <Stars />
       </div>
       <p class="review__text">
         {{ review.text }}
@@ -75,6 +70,8 @@
 
 <script setup>
 import ButtonCustomize from "./ButtonCustomize.vue";
+import Stars from "./Stars.vue";
+
 const features = [
   {
     icon: "moon-sun",
@@ -130,31 +127,6 @@ const review = {
     gap: 18px;
     margin-top: 25px;
     margin-bottom: 40px;
-  }
-
-  &__button {
-    width: 362px;
-    height: 56px;
-    border-radius: 5px;
-    background-color: #01005b;
-    border: none;
-    padding: 16px 30px;
-    position: relative;
-
-    &--text {
-      font-family: "Suisse Int'l", sans-serif;
-      font-weight: 400;
-      font-size: 18px;
-      letter-spacing: 3%;
-      text-align: center;
-      color: #fff;
-    }
-
-    &--arrow {
-      position: absolute;
-      right: 45px;
-      bottom: 8px;
-    }
   }
 }
 
@@ -280,22 +252,7 @@ const review = {
     line-height: 23px;
     letter-spacing: 3%;
     color: #676869;
-    margin-right: 20px;
-  }
-
-  &__svg-container {
-    display: flex;
-    gap: 2px;
-    margin-right: 10px;
-  }
-
-  &__comment {
-    font-family: "Suisse Int'l", sans-serif;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 20px;
-    letter-spacing: 2%;
-    color: #828282;
+    margin-right: 15px;
   }
 }
 </style>

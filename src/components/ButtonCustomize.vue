@@ -14,3 +14,32 @@ const props = defineProps({
   },
 });
 </script>
+
+<style lang="scss">
+.info {
+  &__button {
+    width: 362px;
+    height: 56px;
+    border-radius: 5px;
+    background-color: #01005b;
+    border: none;
+    padding: 16px 30px;
+    position: relative;
+
+    &--text {
+      font-family: "Suisse Int'l", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      letter-spacing: 3%;
+      text-align: center;
+      color: #fff;
+    }
+
+    &--arrow {
+      position: absolute;
+      right: 45px;
+      bottom: 8px;
+    }
+  }
+}
+</style>
