@@ -6,6 +6,8 @@ import Founder from "./components/Founder.vue";
 import HowItWorks from "./components/HowItWorks.vue";
 import Reviews from "./components/Reviews.vue";
 import FAQ from "./components/FAQ.vue";
+import Impact from "./components/Impact.vue";
+import Final from "./components/Final.vue";
 </script>
 
 <template>
@@ -16,4 +18,6 @@ import FAQ from "./components/FAQ.vue";
   <HowItWorks />
   <Reviews />
   <FAQ />
+  <Impact />
+  <Final />
 </template>

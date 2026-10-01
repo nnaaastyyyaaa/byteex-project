@@ -24,31 +24,7 @@
         </ul>
         <ButtonCustomize svgSrc="arrow" />
       </div>
-      <div class="hero-content__gallery gallery">
-        <div class="gallery__band left"></div>
-        <img
-          class="gallery__left"
-          src="/images/hero-1.jpg"
-          alt="Woman in grey knit loungewear set"
-          width="210"
-          height="316"
-        />
-        <img
-          class="gallery__center"
-          src="/images/hero-2.jpg"
-          alt="Woman in a white robe"
-          width="250"
-          height="422"
-        />
-        <img
-          class="gallery__right"
-          src="/images/hero-3.jpg"
-          alt="Woman reading a book on a green sofa"
-          width="210"
-          height="316"
-        />
-        <div class="gallery__band right"></div>
-      </div>
+      <Gallery :urls="urls" />
     </div>
     <div class="review">
       <div class="review__header review-header">
@@ -71,6 +47,7 @@
 <script setup>
 import ButtonCustomize from "./ButtonCustomize.vue";
 import Stars from "./Stars.vue";
+import Gallery from "./Gallery.vue";
 
 const features = [
   {
@@ -92,6 +69,21 @@ const review = {
   avatar: "/images/amy.jpg",
   text: "Overjoyed with my Loungewear set. I have the jogger and the sweatshirt. Quality product on every level. From the compostable packaging, to the supplied washing bag, even the garments smells like fresh herbs when I first held them.",
 };
+
+const urls = [
+  {
+    src: "hero-1.jpg",
+    alt: "Woman in grey knit loungewear set",
+  },
+  {
+    src: "hero-2.jpg",
+    alt: "Woman in a white robe",
+  },
+  {
+    src: "hero-3.jpg",
+    alt: "Woman reading a book on a green sofa",
+  },
+];
 </script>
 
 <style lang="scss">
@@ -167,44 +159,6 @@ const review = {
     line-height: 23px;
     letter-spacing: 3%;
     color: #676869;
-  }
-}
-
-.gallery {
-  display: flex;
-  align-items: center;
-
-  &__band {
-    width: 134px;
-    height: 189px;
-    background: linear-gradient(
-      180deg,
-      rgba(249, 240, 229, 0.7) 0%,
-      rgba(249, 240, 229, 0.22) 100%
-    );
-
-    &.left {
-      transform: translateX(80%);
-    }
-
-    &.right {
-      transform: translateX(-80%);
-    }
-  }
-
-  &__center {
-    border: 2px solid white;
-    z-index: 3;
-  }
-
-  &__left {
-    transform: translateX(46px);
-    z-index: 2;
-  }
-
-  &__right {
-    transform: translateX(-46px);
-    z-index: 2;
   }
 }
 
