@@ -1,0 +1,142 @@
+<template>
+  <div class="gallery" tabindex="0" @keydown.left="prev" @keydown.right="next">
+    <button class="gallery__arrow" type="button">
+      <svg width="20" height="20">
+        <use href="/icons/icons.svg#icon-arrow2" />
+      </svg>
+    </button>
+
+    <div class="gallery__figure">
+      <div class="gallery__frame">
+        <img
+          :key="current.src"
+          class="gallery__img"
+          :src="current.src"
+          :alt="current.alt"
+        />
+
+        <ul class="gallery__thumbs">
+          <li v-for="(image, i) in images" :key="image.src">
+            <button
+              type="button"
+              class="gallery__thumb"
+              :class="{ 'gallery__thumb--active': i === 1 }"
+            >
+              <img :src="image.src" alt="" />
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="gallery__caption">{{ current.title }}</div>
+    </div>
+
+    <button
+      class="gallery__arrow gallery__arrow--right"
+      type="button"
+      aria-label="Next photo"
+      @click="next"
+    >
+      <svg width="20" height="20">
+        <use href="/icons/icons.svg#icon-arrow2" />
+      </svg>
+    </button>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from "vue";
+
+const props = defineProps({
+  images: {
+    type: Array,
+    required: true,
+  },
+});
+
+const index = ref(1);
+const current = computed(() => props.images[index.value]);
+</script>
+
+<style lang="scss" scoped>
+.gallery {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  outline: none;
+
+  &__arrow {
+    border: none;
+    background: none;
+    color: #565656;
+    cursor: pointer;
+
+    &--right {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__frame {
+    position: relative;
+    width: 432px;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+  }
+
+  &__img {
+    display: block;
+    width: 432px;
+    height: 648px;
+    object-fit: cover;
+  }
+
+  &__thumbs {
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__thumb {
+    display: block;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 2px solid transparent;
+    background: none;
+    cursor: pointer;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &--active {
+      border-color: #fff;
+    }
+  }
+
+  &__caption {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #565656;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
