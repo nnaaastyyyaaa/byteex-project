@@ -5,6 +5,7 @@ import Benefits from "./components/Benefits.vue";
 import Founder from "./components/Founder.vue";
 import HowItWorks from "./components/HowItWorks.vue";
 import Reviews from "./components/Reviews.vue";
+import FAQ from "./components/FAQ.vue";
 </script>
 
 <template>
@@ -14,4 +15,5 @@ import Reviews from "./components/Reviews.vue";
   <Founder />
   <HowItWorks />
   <Reviews />
+  <FAQ />
 </template>
