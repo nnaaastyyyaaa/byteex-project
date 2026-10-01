@@ -67,42 +67,42 @@ const benefits = [
 
 const images = [
   {
-    src: "/images/woman2.jpg",
+    src: "/images/hero-1.jpg",
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },
   {
-    src: "/images/woman1.jpg",
+    src: "/images/woman4.jpg",
     alt: "Woman in a white robe",
     title: "White Robe",
   },
   {
-    src: "/images/woman2.jpg",
+    src: "/images/hero-1.jpg",
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },
   {
-    src: "/images/woman2.jpg",
+    src: "/images/hero-1.jpg",
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },
   {
-    src: "/images/woman2.jpg",
+    src: "/images/hero-1.jpg",
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },
   {
-    src: "/images/woman2.jpg",
+    src: "/images/hero-1.jpg",
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },
   {
-    src: "/images/woman2.jpg",
+    src: "/images/hero-1.jpg",
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },
   {
-    src: "/images/woman2.jpg",
+    src: "/images/hero-1.jpg",
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },

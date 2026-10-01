@@ -22,12 +22,7 @@
             </p>
           </li>
         </ul>
-        <button class="info__button">
-          <p class="info__button--text">Customize Your Outfit</p>
-          <svg width="22" height="10" class="info__button--arrow">
-            <use href="/icons/icons.svg#icon-arrow" />
-          </svg>
-        </button>
+        <ButtonCustomize svgSrc="arrow" />
       </div>
       <div class="hero-content__gallery gallery">
         <div class="gallery__band left"></div>
@@ -79,6 +74,7 @@
 </template>
 
 <script setup>
+import ButtonCustomize from "./ButtonCustomize.vue";
 const features = [
   {
     icon: "moon-sun",
@@ -117,6 +113,7 @@ const review = {
 }
 
 .info {
+  width: 550px;
   &__header {
     font-family: "Sofia Pro", sans-serif;
     font-weight: 400;
@@ -240,9 +237,9 @@ const review = {
 }
 
 .review {
-  width: 454px;
+  width: 416px;
   height: 172px;
-  padding: 20px 16px;
+  padding: 20px 0 0 20px;
   border-radius: 8px;
   background: #fff;
   stroke-width: 1px;

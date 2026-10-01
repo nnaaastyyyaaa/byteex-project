@@ -100,6 +100,11 @@ const current = computed(() => props.images[index.value]);
     margin: 0;
     padding: 0;
     list-style: none;
+
+    & img {
+      object-fit: cover;
+      object-position: center 30%;
+    }
   }
 
   &__thumb {
