@@ -1,6 +1,6 @@
 <template>
   <div class="gallery" tabindex="0" @keydown.left="prev" @keydown.right="next">
-    <button class="gallery__arrow" type="button">
+    <button class="gallery__arrow" type="button" @click="prev">
       <svg width="20" height="20">
         <use href="/icons/icons.svg#icon-arrow2" />
       </svg>
@@ -8,19 +8,22 @@
 
     <div class="gallery__figure">
       <div class="gallery__frame">
-        <img
-          :key="current.src"
-          class="gallery__img"
-          :src="current.src"
-          :alt="current.alt"
-        />
+        <Transition name="fade" mode="out-in">
+          <img
+            :key="current.src"
+            class="gallery__img"
+            :src="current.src"
+            :alt="current.alt"
+          />
+        </Transition>
 
         <ul class="gallery__thumbs">
-          <li v-for="(image, i) in images" :key="image.src">
+          <li v-for="(image, i) in images" :key="i">
             <button
               type="button"
               class="gallery__thumb"
               :class="{ 'gallery__thumb--active': i === 1 }"
+              @click="index = i"
             >
               <img :src="image.src" alt="" />
             </button>
@@ -45,7 +48,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 
 const props = defineProps({
   images: {
@@ -56,6 +59,13 @@ const props = defineProps({
 
 const index = ref(1);
 const current = computed(() => props.images[index.value]);
+
+const next = () => {
+  index.value = (index.value + 1) % props.images.length;
+};
+const prev = () => {
+  index.value = (index.value - 1 + props.images.length) % props.images.length;
+};
 </script>
 
 <style lang="scss" scoped>

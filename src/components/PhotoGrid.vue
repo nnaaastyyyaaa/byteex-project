@@ -1,15 +1,40 @@
 <template>
   <ul class="photo-grid">
-    <li v-for="n in 22" :key="n" class="photo-grid__item">
+    <li
+      v-for="(image, index) in images"
+      :key="index + 1"
+      class="photo-grid__item"
+    >
       <img
         class="photo-grid__img"
-        :src="`/images/image${n}.jpg`"
-        :alt="`Customer photo ${n}`"
+        :src="image.src"
+        :alt="`${image.alt} ${index + 1}`"
         loading="lazy"
       />
     </li>
   </ul>
 </template>
+
+<script setup>
+import { ref, onMounted } from "vue";
+import { getEntries } from "../api/cms.js";
+
+let images = ref([]);
+
+onMounted(async () => {
+  try {
+    const entries = await getEntries("gridImages");
+    if (entries) {
+      images.value = entries.map((e) => ({
+        src: e.image,
+        alt: "Brand",
+      }));
+    }
+  } catch (e) {
+    console.error(e);
+  }
+});
+</script>
 
 <style scoped lang="scss">
 .photo-grid {

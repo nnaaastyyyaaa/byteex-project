@@ -9,7 +9,7 @@
     <ul class="slider__list">
       <li
         v-for="(review, i) in reviews"
-        :key="review.id"
+        :key="i + 1"
         class="card"
         :class="{ 'card--center': i === 1, 'card--active': i === active }"
       >
@@ -44,26 +44,23 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, onMounted } from "vue";
 import Stars from "./Stars.vue";
+import { getEntries } from "../api/cms.js";
 
-const reviews = [
-  {
-    id: 1,
-    name: "Jane, S.",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed sollicitudin dolor, non sodales justo. Aenean eget aliquet mi.",
-  },
-  {
-    id: 2,
-    name: "Jane, S.",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed sollicitudin dolor, non sodales justo. Aenean eget aliquet mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed sollicitudin dolor, non sodales.",
-  },
-  {
-    id: 3,
-    name: "Jane, S.",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed sollicitudin dolor, non sodales justo. Aenean eget aliquet mi.",
-  },
-];
+const reviews = ref([]);
+
+onMounted(async () => {
+  try {
+    const entries = await getEntries("ourReviews");
+    reviews.value = entries.map((e) => ({
+      name: e.name,
+      text: e.text,
+    }));
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 const active = ref(0);
 

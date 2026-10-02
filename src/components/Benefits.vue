@@ -5,10 +5,10 @@
       <div class="benefits-title__slider">
         <div class="benefits-title__brands" ref="track" @scroll="onScroll">
           <img
-            v-for="n in shownBrands"
-            :key="n"
-            :src="`/images/brand${n}.png`"
-            :alt="`Brand ${n}`"
+            v-for="brand in shownBrands"
+            :key="brand.n"
+            :src="brand.src"
+            :alt="brand.alt"
             :class="['benefits-title__brand', `benefits-title__brand--${n}`]"
           />
         </div>
@@ -65,6 +65,24 @@ import BenefitGallery from "./BenefitGallery.vue";
 import ButtonCustomize from "./ButtonCustomize.vue";
 import Stars from "./Stars.vue";
 import { ref, computed, onMounted, onUnmounted } from "vue";
+import { getEntries } from "../api/cms.js";
+
+let brands = ref([]);
+
+onMounted(async () => {
+  try {
+    const entries = await getEntries("ourBrands");
+    if (entries) {
+      brands.value = entries.map((e) => ({
+        src: e.image,
+        alt: "Brand",
+      }));
+    }
+    console.log(brands);
+  } catch (e) {
+    console.error(e);
+  }
+});
 
 const brandsCount = 5;
 const visible = 3;
@@ -82,12 +100,12 @@ onMounted(() => {
 });
 onUnmounted(() => mq?.removeEventListener("change", updateMq));
 
-const shownBrands = computed(() =>
-  isMobile.value
-    ? Array.from({ length: visible }, (_, i) => active.value + i + 1)
-    : Array.from({ length: brandsCount }, (_, i) => i + 1),
-);
-
+const shownBrands = computed(() => {
+  const list = brands.value.map((b, i) => ({ ...b, n: i + 1 }));
+  return isMobile.value
+    ? list.slice(active.value, active.value + visible)
+    : list;
+});
 const goTo = (i) => {
   active.value = i;
 };

@@ -27,7 +27,7 @@
       </div>
       <Gallery :urls="urls" class="hero-content__gallery" />
     </div>
-    <div class="review">
+    <div v-if="review" class="review">
       <div class="review__header review-header">
         <img
           :src="review.avatar"
@@ -56,9 +56,34 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+
 import ButtonCustomize from "./ButtonCustomize.vue";
 import Stars from "./Stars.vue";
 import Gallery from "./Gallery.vue";
+import { getEntries } from "../api/cms.js";
+
+let review = ref([]);
+
+onMounted(async () => {
+  try {
+    const entries = await getEntries("heroReview");
+    const e = entries[0];
+    if (e) {
+      review.value = {
+        name: e.name,
+        nameMobile: e.nameMobile,
+        avatar: e.avatar,
+        text: e.text,
+        textMobile: e.textMobile,
+      };
+    }
+
+    console.log(review.value);
+  } catch (e) {
+    console.error(e);
+  }
+});
 
 const features = [
   {
@@ -74,15 +99,6 @@ const features = [
     text: "Our signature fabric is incredibly comfortable — unlike anything you’ve ever felt.",
   },
 ];
-
-const review = {
-  name: "Amy P.",
-  nameMobile: "Jane, S",
-  avatar: "/images/amy.jpg",
-  text: "Overjoyed with my Loungewear set. I have the jogger and the sweatshirt. Quality product on every level. From the compostable packaging, to the supplied washing bag, even the garments smells like fresh herbs when I first held them.",
-  textMobile:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed sollicitudin dolor, non sodales justo.",
-};
 
 const urls = [
   {
@@ -151,6 +167,7 @@ const urls = [
   &__gallery {
     display: flex;
     margin-right: 10px;
+    margin-left: 0;
     @media screen and (max-width: 1280px) {
       display: none;
     }
