@@ -1,29 +1,10 @@
 <template>
   <div class="founder-container">
     <div class="founder-content">
-      <div class="founder-images">
-        <img
-          src="/images/hero-1.jpg"
-          alt="Woman"
-          class="founder-images__img-left"
-        />
-        <div class="image-container">
-          <img
-            src="/images/woman4.jpg"
-            alt="Woman"
-            class="founder-images__img"
-            width="382"
-            height="570"
-          />
-        </div>
-        <img
-          src="/images/women3.jpg"
-          alt="Woman"
-          class="founder-images__img-right"
-        />
-      </div>
+      <FounderImages class="founder-content__image" />
       <div class="founder-text">
         <h1 class="founder-text__title">Be your best self.</h1>
+        <FounderImages class="founder-text__image" />
         <p class="founder-text__info">
           Hi! My name’s [Insert Name], and I founded [Insert] in ____.
         </p>
@@ -53,7 +34,7 @@
           sapien.
         </p>
         <p class="founder-text__info">Cras mattis varius mollis.</p>
-        <ButtonCustomize />
+        <ButtonCustomize class="founder-text__button" />
       </div>
     </div>
   </div>
@@ -61,24 +42,34 @@
 
 <script setup>
 import ButtonCustomize from "./ButtonCustomize.vue";
+import FounderImages from "./FounderImages.vue";
 </script>
 
 <style scoped lang="scss">
 .founder-container {
   padding: 82px 90px 56px 124px;
   background-color: #f0eeef;
+
+  @media screen and (max-width: 1280px) {
+    padding: 40px 38px 54px;
+  }
 }
 
 .founder-content {
   display: flex;
   gap: 96px;
-}
 
-.image-container {
-  width: 382px;
-  height: 570px;
-  overflow: hidden;
-  margin: 46px 100px 47px 50px;
+  @media screen and (max-width: 1280px) {
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__image {
+    display: block;
+    @media screen and (max-width: 1280px) {
+      display: none;
+    }
+  }
 }
 
 .founder-text {
@@ -90,6 +81,21 @@ import ButtonCustomize from "./ButtonCustomize.vue";
     letter-spacing: 4%;
     color: #2a2996;
     margin-bottom: 40px;
+
+    @media screen and (max-width: 1280px) {
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+
+  &__image {
+    display: none;
+    @media screen and (max-width: 1280px) {
+      display: block;
+      margin: 40px auto;
+      max-width: 344px;
+    }
   }
 
   &__info {
@@ -101,39 +107,22 @@ import ButtonCustomize from "./ButtonCustomize.vue";
     letter-spacing: 3%;
     color: #6c6c6c;
     margin-bottom: 30px;
-  }
-}
 
-.founder-images {
-  position: relative;
+    @media screen and (max-width: 1280px) {
+      display: block;
+      margin: 0 auto 30px;
+    }
 
-  &__img {
-    width: 100%;
-    height: 100%;
-    transform: scale(1.2);
-    object-fit: cover;
-    transform-origin: 40% 40%;
+    @media screen and (max-width: 786px) {
+      max-width: 335px;
+    }
   }
 
-  &__img-left {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 165px;
-    height: 175px;
-    object-fit: cover;
-    object-position: center 25%;
-    z-index: 1;
-    border: 5px solid #f0eeef;
-  }
-
-  &__img-right {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 128px;
-    height: 176px;
-    border-left: 5px solid #f0eeef;
+  &__button {
+    display: block;
+    @media screen and (max-width: 1280px) {
+      display: none;
+    }
   }
 }
 </style>

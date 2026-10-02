@@ -60,8 +60,8 @@ const current = computed(() => props.images[index.value]);
 
 <style lang="scss" scoped>
 .gallery {
-  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
   outline: none;
 
@@ -81,12 +81,20 @@ const current = computed(() => props.images[index.value]);
     width: 432px;
     aspect-ratio: 2 / 3;
     overflow: hidden;
+
+    @media screen and (max-width: 1280px) {
+      width: 303px;
+    }
+
+    @media screen and (max-width: 481px) {
+      width: 250px;
+    }
   }
 
   &__img {
     display: block;
-    width: 432px;
-    height: 648px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 
@@ -131,7 +139,7 @@ const current = computed(() => props.images[index.value]);
   &__caption {
     margin-top: 16px;
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     color: #565656;
   }
 }

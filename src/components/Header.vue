@@ -10,11 +10,13 @@
       <span class="header__text--separator"> | </span>
       <span> easy 45 day return window. </span>
     </p>
+    <p class="header__mobile-text">free shippingon orders > $200</p>
   </div>
 </template>
 
 <style lang="scss">
 .header {
+  background-color: #f9f0e5;
   &__text {
     display: flex;
     justify-content: center;
@@ -23,7 +25,6 @@
     line-height: 35px;
     letter-spacing: 8%;
     height: 36px;
-    background-color: #f9f0e5;
     text-align: center;
     font-family: "Suisse Int'l", sans-serif;
     font-weight: 400;
@@ -36,6 +37,25 @@
 
     &--separator {
       color: rgba(86, 86, 86, 0.5);
+    }
+
+    @media screen and (max-width: 1279px) {
+      display: none;
+    }
+  }
+
+  &__mobile-text {
+    font-family: "Suisse Int'l", sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 35px;
+    letter-spacing: 8%;
+    text-align: center;
+    color: #565656;
+    display: none;
+
+    @media screen and (max-width: 1279px) {
+      display: block;
     }
   }
 }

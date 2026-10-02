@@ -2,19 +2,36 @@
   <div class="benefits-container">
     <div class="benefits-title">
       <h1 class="benefits-title__header">as seen in</h1>
-      <div class="benefits-title__brands">
-        <img
-          v-for="n in 5"
-          :key="n"
-          :src="`/images/brand${n}.png`"
-          :alt="`Brand ${n}`"
-          class="benefits-title__brand"
-        />
+      <div class="benefits-title__slider">
+        <div class="benefits-title__brands" ref="track" @scroll="onScroll">
+          <img
+            v-for="n in shownBrands"
+            :key="n"
+            :src="`/images/brand${n}.png`"
+            :alt="`Brand ${n}`"
+            :class="['benefits-title__brand', `benefits-title__brand--${n}`]"
+          />
+        </div>
+        <div class="benefits-title__dots">
+          <button
+            v-for="i in dotsCount"
+            :key="i"
+            type="button"
+            class="benefits-title__dot"
+            :class="{ 'benefits-title__dot--active': active === i - 1 }"
+            :aria-label="`Show brands ${i}`"
+            @click="goTo(i - 1)"
+          ></button>
+        </div>
       </div>
     </div>
     <div class="benefits-content">
       <div class="benefits-text">
         <h2 class="benefits-text__title">Loungewear you can be proud of.</h2>
+        <BenefitGallery
+          :images="images"
+          class="benefits-content__mobile-gallery"
+        />
         <ul class="benefits-text__list">
           <li
             class="benefits-text__list-item list-item"
@@ -37,13 +54,43 @@
           </li>
         </ul>
       </div>
-      <BenefitGallery :images="images" />
+      <BenefitGallery :images="images" class="benefits-content__gallery" />
+      <ButtonCustomize svgSrc="arrow" class="benefits-content__button" />
+      <Stars class="benefits-content__stars" />
     </div>
   </div>
 </template>
 <script setup>
 import BenefitGallery from "./BenefitGallery.vue";
+import ButtonCustomize from "./ButtonCustomize.vue";
+import Stars from "./Stars.vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 
+const brandsCount = 5;
+const visible = 3;
+const dotsCount = brandsCount - visible + 1;
+
+const active = ref(0);
+const isMobile = ref(false);
+
+let mq;
+const updateMq = () => (isMobile.value = mq.matches);
+onMounted(() => {
+  mq = window.matchMedia("(max-width: 1280px)");
+  updateMq();
+  mq.addEventListener("change", updateMq);
+});
+onUnmounted(() => mq?.removeEventListener("change", updateMq));
+
+const shownBrands = computed(() =>
+  isMobile.value
+    ? Array.from({ length: visible }, (_, i) => active.value + i + 1)
+    : Array.from({ length: brandsCount }, (_, i) => i + 1),
+);
+
+const goTo = (i) => {
+  active.value = i;
+};
 const text =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis sapien facilisis tincidunt pellentesque. In eget ipsum et felis finibus consequat. ";
 const benefits = [
@@ -137,28 +184,106 @@ const images = [
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 120px;
+    gap: 80px;
     margin-top: 24px;
+  }
+
+  &__dots {
+    display: none;
+  }
+
+  @media screen and (max-width: 1280px) {
+    &__brands {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    &__brand {
+      height: 28px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+
+      &--1 {
+        height: 15px;
+        width: auto;
+      }
+    }
+
+    &__dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    &__dot {
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: #c4c4c4;
+      cursor: pointer;
+
+      &--active {
+        background: #000;
+      }
+    }
   }
 }
 
 .benefits-content {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   gap: 180px;
   margin-top: 112px;
   margin-left: 106px;
-}
+  margin-bottom: 54px;
 
-.benefits-text {
-  &__title {
-    font-family: "Sofia Pro", sans-serif;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: 4%;
-    color: #01005b;
-    margin-bottom: 74px;
-    margin-left: 50px;
+  @media screen and (max-width: 1280px) {
+    justify-content: center;
+    gap: 10px;
+    margin-left: 10px;
+    margin-top: 42px;
+  }
+
+  @media screen and (max-width: 786px) {
+    flex-direction: column;
+  }
+
+  &__gallery {
+    display: flex;
+    @media screen and (max-width: 786px) {
+      display: none;
+    }
+  }
+
+  &__mobile-gallery {
+    display: none;
+    @media screen and (max-width: 786px) {
+      display: flex;
+      margin: 0 auto;
+    }
+  }
+
+  &__button {
+    display: none;
+    @media screen and (max-width: 786px) {
+      display: block;
+      margin: auto;
+    }
+  }
+
+  &__stars {
+    display: none;
+    @media screen and (max-width: 786px) {
+      display: block;
+    }
   }
 }
 
@@ -192,10 +317,20 @@ const images = [
     margin-left: 32px;
     margin-bottom: 32px;
     max-width: 660px;
+
+    @media screen and (max-width: 1280px) {
+      margin-left: 5px;
+    }
   }
 }
 
 .text-container {
+  @media screen and (max-width: 786px) {
+    text-align: center;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(196, 196, 196, 0.5);
+  }
+
   &__title {
     font-family: "Sofia Pro", sans-serif;
     font-weight: 400;
@@ -203,6 +338,10 @@ const images = [
     line-height: 24px;
     letter-spacing: 4%;
     color: #01005b;
+
+    @media screen and (max-width: 786px) {
+      margin-bottom: 20px;
+    }
   }
 
   &__text {
@@ -212,6 +351,52 @@ const images = [
     line-height: 23px;
     letter-spacing: 3%;
     color: #6c6c6c;
+  }
+}
+
+.benefits-text {
+  @media screen and (max-width: 786px) {
+    display: block;
+    margin: 0 auto;
+  }
+  &__title {
+    font-family: "Sofia Pro", sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 4%;
+    color: #01005b;
+    margin-bottom: 74px;
+    margin-left: 50px;
+
+    @media screen and (max-width: 786px) {
+      display: block;
+      margin: 0 auto;
+      max-width: 330px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+  }
+
+  &__list-item {
+    @media screen and (max-width: 786px) {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &:last-child .text-container {
+      @media screen and (max-width: 786px) {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  &__list {
+    @media screen and (max-width: 786px) {
+      margin-top: 62px;
+      padding-left: 0;
+    }
   }
 }
 </style>

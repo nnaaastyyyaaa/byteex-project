@@ -26,6 +26,15 @@ const props = defineProps({
     padding: 16px 30px;
     position: relative;
 
+    @media screen and (max-width: 1280px) {
+      width: 381px;
+    }
+
+    @media screen and (max-width: 481px) {
+      width: 80%;
+      height: 80%;
+    }
+
     &--text {
       font-family: "Suisse Int'l", sans-serif;
       font-weight: 400;
