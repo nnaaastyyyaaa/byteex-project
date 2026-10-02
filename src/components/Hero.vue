@@ -127,7 +127,7 @@ const urls = [
   z-index: 2;
 
   @media screen and (max-width: 1280px) {
-    margin: 33px 21px 60px;
+    margin: 33px 21px 90px;
   }
 
   &__logo {
