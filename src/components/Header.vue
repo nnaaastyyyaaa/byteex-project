@@ -10,7 +10,7 @@
       <span class="header__text--separator"> | </span>
       <span> easy 45 day return window. </span>
     </p>
-    <p class="header__mobile-text">free shippingon orders > $200</p>
+    <p class="header__mobile-text">free shipping on orders > $200</p>
   </div>
 </template>
 
