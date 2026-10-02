@@ -177,7 +177,8 @@ const urls = [
 
   &__button {
     @media screen and (max-width: 1280px) {
-      display: block;
+      display: flex;
+      justify-content: center;
       margin: 0 auto;
     }
   }

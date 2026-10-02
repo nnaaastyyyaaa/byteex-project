@@ -27,13 +27,20 @@ const props = defineProps({
     padding: 16px 30px;
     position: relative;
 
+    @media screen and (max-width: 786px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 0 20px;
+    }
+
     @media screen and (max-width: 1280px) {
       width: 381px;
     }
 
     @media screen and (max-width: 481px) {
       width: 80%;
-      height: 80%;
     }
 
     &--text {
@@ -51,13 +58,8 @@ const props = defineProps({
       bottom: 8px;
 
       @media screen and (max-width: 786px) {
-        right: 62px;
-        bottom: 22px;
-      }
-
-      @media screen and (max-width: 481px) {
-        right: 38px;
-        bottom: 22px;
+        position: static;
+        flex-shrink: 0;
       }
     }
   }

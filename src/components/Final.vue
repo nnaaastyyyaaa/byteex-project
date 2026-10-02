@@ -128,7 +128,8 @@ const urls = [
   }
 
   &__button {
-    display: block;
+    display: flex;
+    justify-content: center;
     margin: 0 auto;
     margin-top: 58px;
 

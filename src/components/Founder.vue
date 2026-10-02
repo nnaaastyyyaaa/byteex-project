@@ -120,7 +120,7 @@ import FounderImages from "./FounderImages.vue";
   }
 
   &__button {
-    display: block;
+    display: flex;
     @media screen and (max-width: 1280px) {
       display: none;
     }

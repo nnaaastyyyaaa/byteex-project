@@ -296,7 +296,7 @@ const images = [
   &__button {
     display: none;
     @media screen and (max-width: 786px) {
-      display: block;
+      display: flex;
       margin: auto;
     }
   }

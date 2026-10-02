@@ -98,7 +98,8 @@ const steps = [
   }
 
   &__button {
-    display: block;
+    display: flex;
+    justify-content: center;
     margin: 0 auto;
   }
 }

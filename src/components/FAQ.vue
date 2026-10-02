@@ -78,7 +78,8 @@ const base = import.meta.env.BASE_URL;
   &__button {
     display: none;
     @media screen and (max-width: 786px) {
-      display: block;
+      display: flex;
+      justify-content: center;
       margin: 40px auto 0;
     }
   }
