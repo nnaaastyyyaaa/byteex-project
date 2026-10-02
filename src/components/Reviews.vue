@@ -10,18 +10,32 @@
     </div>
     <PhotoGrid />
     <ReviewsSlider />
-    <div class="reviews-content"></div>
+    <ButtonCustomize svgSrc="arrow" class="reviews-container__button" />
+    <Stars />
   </div>
 </template>
 
 <script setup>
 import PhotoGrid from "./PhotoGrid.vue";
 import ReviewsSlider from "./ReviewsSlider.vue";
+import ButtonCustomize from "./ButtonCustomize.vue";
+import Stars from "./Stars.vue";
 </script>
 
 <style lang="scss">
 .reviews-container {
   margin-top: 74px;
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 63px;
+
+    @media screen and (max-width: 786px) {
+      margin-top: 30px;
+    }
+  }
 }
 
 .reviews-header {
