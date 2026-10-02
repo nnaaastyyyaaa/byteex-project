@@ -54,6 +54,11 @@ const props = defineProps({
         right: 62px;
         bottom: 22px;
       }
+
+      @media screen and (max-width: 481px) {
+        right: 38px;
+        bottom: 22px;
+      }
     }
   }
 }
