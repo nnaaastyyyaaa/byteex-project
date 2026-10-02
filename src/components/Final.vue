@@ -6,6 +6,10 @@
       sapien facilisis tincidunt pellentesque. In eget ipsum et felis finibus
       consequat.
     </p>
+    <p class="final-container__text-mobile">
+      Click below to browse our collection!
+    </p>
+
     <Gallery :urls="urls" class="final-container__gallery" />
     <ButtonCustomize svgSrc="arrow" class="final-container__button" />
     <div class="final-container__payments payments">
@@ -28,12 +32,14 @@
         <p class="guarantees__text">{{ item.text }}</p>
       </li>
     </ul>
+    <Stars class="final-container__stars" />
   </div>
 </template>
 
 <script setup>
 import Gallery from "./Gallery.vue";
 import ButtonCustomize from "./ButtonCustomize.vue";
+import Stars from "./Stars.vue";
 
 const items = [
   { icon: "car", text: "FREE Shipping on Orders over $200" },
@@ -75,9 +81,14 @@ const urls = [
     text-align: center;
     color: #01005b;
     margin-bottom: 20px;
+
+    @media screen and (max-width: 786px) {
+      margin-bottom: 10px;
+    }
   }
 
-  &__text {
+  &__text,
+  &__text-mobile {
     font-family: "Sofia Pro", sans-serif;
     font-weight: 400;
     font-size: 15px;
@@ -91,15 +102,37 @@ const urls = [
     margin: 0 auto;
   }
 
+  &__text {
+    display: block;
+    @media screen and (max-width: 786px) {
+      display: none;
+    }
+  }
+
+  &__text-mobile {
+    display: none;
+    @media screen and (max-width: 786px) {
+      display: block;
+    }
+  }
+
   &__gallery {
     justify-content: center;
     margin-top: 36px;
+
+    @media screen and (max-width: 786px) {
+      margin-top: 20px;
+    }
   }
 
   &__button {
     display: block;
     margin: 0 auto;
     margin-top: 58px;
+
+    @media screen and (max-width: 786px) {
+      margin-top: 52px;
+    }
   }
 
   &__payments {
@@ -107,6 +140,18 @@ const urls = [
     justify-content: center;
     align-items: center;
     gap: 5px;
+
+    @media screen and (max-width: 786px) {
+      display: none;
+    }
+  }
+
+  &__stars {
+    display: none;
+    @media screen and (max-width: 786px) {
+      display: flex;
+      padding-bottom: 50px;
+    }
   }
 }
 
@@ -129,6 +174,10 @@ const urls = [
   list-style: none;
   padding-bottom: 84px;
   margin-bottom: 0;
+
+  @media screen and (max-width: 786px) {
+    display: none;
+  }
 
   &__item {
     display: flex;

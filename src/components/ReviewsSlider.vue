@@ -80,7 +80,7 @@ const prev = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 66px;
+  gap: 58px;
   margin-top: 76px;
 
   @media screen and (max-width: 1280px) {

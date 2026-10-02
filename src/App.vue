@@ -18,6 +18,6 @@ import Final from "./components/Final.vue";
   <HowItWorks />
   <Reviews />
   <FAQ />
-  <!--<Impact />
-  <Final />  -->
+  <Impact />
+  <Final />
 </template>

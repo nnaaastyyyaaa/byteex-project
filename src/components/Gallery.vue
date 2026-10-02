@@ -35,6 +35,7 @@ const props = defineProps({
   position: relative;
   width: fit-content;
   max-width: 100%;
+  margin: 36px auto 0;
 
   &__inner {
     --w: clamp(150px, 17vw, 250px);
@@ -48,7 +49,7 @@ const props = defineProps({
     }
 
     @media screen and (max-width: 481px) {
-      --w: 130px;
+      --w: 120px;
     }
   }
 
@@ -57,7 +58,7 @@ const props = defineProps({
     position: absolute;
     top: 50%;
     left: calc(var(--w) * -0.16);
-    right: calc(var(--w) * -0.16);
+    right: calc(var(--w) * -0.19);
     height: calc(var(--w) * 0.756);
     transform: translateY(-50%);
     z-index: 0;

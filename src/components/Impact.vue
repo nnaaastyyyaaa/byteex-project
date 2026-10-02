@@ -9,7 +9,7 @@
             <use :href="`/icons/icons.svg#icon-${item.icon}`" />
           </svg>
         </div>
-        <h3 class="impact__value">{{ item.value }}</h3>
+        <h3 class="impact__value">{{ item.title }}</h3>
         <p class="impact__text">{{ item.text }}</p>
       </div>
     </div>
@@ -51,7 +51,7 @@ const impacts = [
     line-height: 40px;
     letter-spacing: 4%;
     text-align: center;
-    color: #15005b;
+    color: #2a2996;
     margin-bottom: 18px;
   }
 
@@ -59,6 +59,11 @@ const impacts = [
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media screen and (max-width: 786px) {
+      flex-direction: column;
+      padding-bottom: 56px;
+    }
   }
 }
 
@@ -72,7 +77,24 @@ const impacts = [
     height: 122px;
 
     & + & {
-      border-left: 1px solid #dcdcdc;
+      border-left: 1px solid rgba(196, 196, 196, 0.5);
+    }
+
+    @media screen and (max-width: 786px) {
+      & + & {
+        border-left: none;
+      }
+      & {
+        width: 282px;
+        border-bottom: 1px solid rgba(196, 196, 196, 0.5);
+      }
+    }
+
+    &:last-child {
+      display: block;
+      @media screen and (max-width: 786px) {
+        display: none;
+      }
     }
   }
 
@@ -102,12 +124,12 @@ const impacts = [
   }
 
   &__value {
-    margin: 0 0 4px;
+    margin: 14px 0 4px;
     font-family: "Sofia Pro", sans-serif;
     font-weight: 700;
     font-size: 24px;
     line-height: 28px;
-    color: #15005b;
+    color: #2a2996;
   }
 
   &__text {
@@ -117,7 +139,11 @@ const impacts = [
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.03em;
-    color: #15005b;
+    color: #2a2996;
+
+    @media screen and (max-width: 786px) {
+      padding-bottom: 16px;
+    }
   }
 }
 </style>
