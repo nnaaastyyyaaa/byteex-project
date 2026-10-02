@@ -1,13 +1,13 @@
 <template>
   <div class="founder-images">
     <img
-      src="/images/hero-1.jpg"
+      :src="`${base}images/hero-1.jpg`"
       alt="Woman"
       class="founder-images__img-left"
     />
     <div class="image-container">
       <img
-        src="/images/woman4.jpg"
+        :src="`${base}images/woman4.jpg`"
         alt="Woman"
         class="founder-images__img"
         width="382"
@@ -15,12 +15,16 @@
       />
     </div>
     <img
-      src="/images/women3.jpg"
+      :src="`${base}images/women3.jpg`"
       alt="Woman"
       class="founder-images__img-right"
     />
   </div>
 </template>
+
+<script setup>
+const base = import.meta.env.BASE_URL;
+</script>
 
 <style lang="scss">
 .image-container {

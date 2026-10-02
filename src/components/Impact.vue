@@ -6,7 +6,7 @@
       <div v-for="(item, index) in impacts" :key="index" class="impact__item">
         <div class="impact__svg-container">
           <svg :class="`impact__icon impact__icon--${index}`">
-            <use :href="`/icons/icons.svg#icon-${item.icon}`" />
+            <use :href="`${base}icons/icons.svg#icon-${item.icon}`" />
           </svg>
         </div>
         <h3 class="impact__value">{{ item.title }}</h3>
@@ -17,6 +17,8 @@
 </template>
 
 <script setup>
+const base = import.meta.env.BASE_URL;
+
 const impacts = [
   {
     icon: "cloude",

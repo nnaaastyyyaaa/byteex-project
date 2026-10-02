@@ -1,7 +1,7 @@
 <template>
   <div class="stars__svg-container">
     <svg width="10" height="10" v-for="n in 5" :key="n">
-      <use href="/icons/icons.svg#icon-star" />
+      <use :href="`${base}icons/icons.svg#icon-star`" />
     </svg>
     <p v-if="props.includeParagraph" class="stars__comment">
       One of 500+ 5 Star Reviews Online
@@ -10,6 +10,7 @@
 </template>
 
 <script setup>
+const base = import.meta.env.BASE_URL;
 const props = defineProps({
   includeParagraph: {
     type: Boolean,

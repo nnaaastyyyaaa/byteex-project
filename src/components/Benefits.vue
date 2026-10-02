@@ -5,11 +5,14 @@
       <div class="benefits-title__slider">
         <div class="benefits-title__brands" ref="track" @scroll="onScroll">
           <img
-            v-for="brand in shownBrands"
+            v-for="(brand, index) in shownBrands"
             :key="brand.n"
             :src="brand.src"
             :alt="brand.alt"
-            :class="['benefits-title__brand', `benefits-title__brand--${n}`]"
+            :class="[
+              'benefits-title__brand',
+              `benefits-title__brand--${index + 1}`,
+            ]"
           />
         </div>
         <div class="benefits-title__dots">
@@ -40,7 +43,7 @@
           >
             <div class="list-item__svg-container">
               <svg :class="`list-item__svg--${index}`">
-                <use :href="`/icons/icons.svg#icon-${benefit.icon}`" />
+                <use :href="`${base}icons/icons.svg#icon-${benefit.icon}`" />
               </svg>
             </div>
             <div class="list-item__text-container text-container">
@@ -67,6 +70,7 @@ import Stars from "./Stars.vue";
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { getEntries } from "../api/cms.js";
 
+const base = import.meta.env.BASE_URL;
 let brands = ref([]);
 
 onMounted(async () => {
@@ -132,42 +136,42 @@ const benefits = [
 
 const images = [
   {
-    src: "/images/hero-1.jpg",
+    src: `${base}images/hero-1.jpg`,
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },
   {
-    src: "/images/woman4.jpg",
+    src: `${base}images/woman4.jpg`,
     alt: "Woman in a white robe",
     title: "White Robe",
   },
   {
-    src: "/images/hero-1.jpg",
+    src: `${base}images/hero-1.jpg`,
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },
   {
-    src: "/images/hero-1.jpg",
+    src: `${base}images/hero-1.jpg`,
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },
   {
-    src: "/images/hero-1.jpg",
+    src: `${base}images/hero-1.jpg`,
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },
   {
-    src: "/images/hero-1.jpg",
+    src: `${base}images/hero-1.jpg`,
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },
   {
-    src: "/images/hero-1.jpg",
+    src: `${base}images/hero-1.jpg`,
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },
   {
-    src: "/images/hero-1.jpg",
+    src: `${base}images/hero-1.jpg`,
     alt: "Woman in a grey costume",
     title: "Grey Costume",
   },

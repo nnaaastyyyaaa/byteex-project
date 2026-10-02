@@ -2,12 +2,13 @@
   <button class="info__button">
     <p class="info__button--text">Customize Your Outfit</p>
     <svg v-if="props.svgSrc" width="22" height="10" class="info__button--arrow">
-      <use :href="`/icons/icons.svg#icon-${props.svgSrc}`" />
+      <use :href="`${base}icons/icons.svg#icon-${props.svgSrc}`" />
     </svg>
   </button>
 </template>
 
 <script setup>
+const base = import.meta.env.BASE_URL;
 const props = defineProps({
   svgSrc: {
     type: String,
@@ -48,6 +49,11 @@ const props = defineProps({
       position: absolute;
       right: 45px;
       bottom: 8px;
+
+      @media screen and (max-width: 786px) {
+        right: 62px;
+        bottom: 22px;
+      }
     }
   }
 }

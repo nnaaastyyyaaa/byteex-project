@@ -16,7 +16,7 @@
           <span>{{ item.question }}</span>
           <svg class="faq__icon" width="18" height="18" aria-hidden="true">
             <use
-              :href="`/icons/icons.svg#icon-${openIndex === i ? 'minus' : 'plus'}`"
+              :href="`${base}icons/icons.svg#icon-${openIndex === i ? 'minus' : 'plus'}`"
             />
           </svg>
         </button>
@@ -31,7 +31,7 @@
 
 <script setup>
 import { ref } from "vue";
-
+const base = import.meta.env.BASE_URL;
 const answer =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis sapien facilisis tincidunt pellentesque. In eget ipsum et felis finibus consequat.";
 

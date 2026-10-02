@@ -4,17 +4,17 @@
       <div class="gallery__band"></div>
       <img
         class="gallery__left"
-        :src="`/images/${props.urls[0].src}`"
+        :src="`${base}images/${props.urls[0].src}`"
         :alt="props.urls[0].alt"
       />
       <img
         class="gallery__center"
-        :src="`/images/${props.urls[1].src}`"
+        :src="`${base}images/${props.urls[1].src}`"
         :alt="props.urls[1].alt"
       />
       <img
         class="gallery__right"
-        :src="`/images/${props.urls[2].src}`"
+        :src="`${base}images/${props.urls[2].src}`"
         :alt="props.urls[2].alt"
       />
     </div>
@@ -22,6 +22,8 @@
 </template>
 
 <script setup>
+const base = import.meta.env.BASE_URL;
+
 const props = defineProps({
   urls: {
     type: Array,

@@ -2,7 +2,7 @@
   <div class="gallery" tabindex="0" @keydown.left="prev" @keydown.right="next">
     <button class="gallery__arrow" type="button" @click="prev">
       <svg width="20" height="20">
-        <use href="/icons/icons.svg#icon-arrow2" />
+        <use :href="`${base}icons//icons.svg#icon-arrow2`" />
       </svg>
     </button>
 
@@ -22,7 +22,7 @@
             <button
               type="button"
               class="gallery__thumb"
-              :class="{ 'gallery__thumb--active': i === 1 }"
+              :class="{ 'gallery__thumb--active': i === index }"
               @click="index = i"
             >
               <img :src="image.src" alt="" />
@@ -41,7 +41,7 @@
       @click="next"
     >
       <svg width="20" height="20">
-        <use href="/icons/icons.svg#icon-arrow2" />
+        <use :href="`${base}icons//icons.svg#icon-arrow2`" />
       </svg>
     </button>
   </div>
@@ -49,6 +49,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
+const base = import.meta.env.BASE_URL;
 
 const props = defineProps({
   images: {
@@ -123,6 +124,10 @@ const prev = () => {
     padding: 0;
     list-style: none;
 
+    @media screen and (max-width: 786px) {
+      gap: 2px;
+    }
+
     & img {
       object-fit: cover;
       object-position: center 30%;
@@ -137,6 +142,11 @@ const prev = () => {
     border: 2px solid transparent;
     background: none;
     cursor: pointer;
+
+    @media screen and (max-width: 481px) {
+      width: 18px;
+      height: 18px;
+    }
 
     img {
       display: block;

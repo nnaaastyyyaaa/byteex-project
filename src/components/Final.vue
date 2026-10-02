@@ -14,10 +14,10 @@
     <ButtonCustomize svgSrc="arrow" class="final-container__button" />
     <div class="final-container__payments payments">
       <svg width="11" height="11">
-        <use href="/icons/icons.svg#icon-clock" />
+        <use :href="`${base}icons/icons.svg#icon-clock`" />
       </svg>
       <p class="payments__text">Ships in 1-2 Days</p>
-      <img src="/images/icons.png" alt="payment-methods" />
+      <img :src="`${base}images/icons.png`" alt="payment-methods`" />
     </div>
     <ul class="final-container__guarantees guarantees">
       <li v-for="(item, index) in items" :key="index" class="guarantees__item">
@@ -26,7 +26,7 @@
             :class="`guarantees__icon guarantees__icon--${index}`"
             fill="#676869"
           >
-            <use :href="`/icons/icons.svg#icon-${item.icon}`" />
+            <use :href="`${base}icons/icons.svg#icon-${item.icon}`" />
           </svg>
         </div>
         <p class="guarantees__text">{{ item.text }}</p>
@@ -40,6 +40,8 @@
 import Gallery from "./Gallery.vue";
 import ButtonCustomize from "./ButtonCustomize.vue";
 import Stars from "./Stars.vue";
+
+const base = import.meta.env.BASE_URL;
 
 const items = [
   { icon: "car", text: "FREE Shipping on Orders over $200" },

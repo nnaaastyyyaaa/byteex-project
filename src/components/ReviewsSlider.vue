@@ -2,7 +2,7 @@
   <div class="slider">
     <button class="slider__arrow" type="button" @click="prev">
       <svg class="slider__icon" width="10" height="20">
-        <use href="/icons/icons.svg#icon-arrow2" />
+        <use :href="`${base}icons/icons.svg#icon-arrow2`" />
       </svg>
     </button>
 
@@ -26,7 +26,7 @@
 
     <button class="slider__arrow" type="button" @click="next">
       <svg class="slider__icon slider__icon--next" width="10" height="20">
-        <use href="/icons/icons.svg#icon-arrow2" />
+        <use :href="`${base}icons/icons.svg#icon-arrow2`" />
       </svg>
     </button>
   </div>
@@ -47,6 +47,7 @@
 import { ref, onMounted } from "vue";
 import Stars from "./Stars.vue";
 import { getEntries } from "../api/cms.js";
+const base = import.meta.env.BASE_URL;
 
 const reviews = ref([]);
 
@@ -65,10 +66,13 @@ onMounted(async () => {
 const active = ref(0);
 
 const next = () => {
-  active.value = (active.value + 1) % reviews.length;
+  if (!reviews.value.length) return;
+  active.value = (active.value + 1) % reviews.value.length;
 };
 const prev = () => {
-  active.value = (active.value - 1 + reviews.length) % reviews.length;
+  if (!reviews.value.length) return;
+  active.value =
+    (active.value - 1 + reviews.value.length) % reviews.value.length;
 };
 </script>
 

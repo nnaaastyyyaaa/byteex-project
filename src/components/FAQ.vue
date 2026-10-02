@@ -9,17 +9,17 @@
           <div class="collage__block collage__block--2"></div>
           <img
             class="collage__image collage__image--right"
-            src="/images/image23.png"
+            :src="`${base}images/image23.png`"
             alt="Girl"
           />
           <img
             class="collage__image collage__image--left"
-            src="/images/image21.jpg"
+            :src="`${base}images/image21.jpg`"
             alt="Girl reads book"
           />
           <img
             class="collage__image collage__image--center"
-            src="/images/hero-1.jpg"
+            :src="`${base}images/hero-1.jpg`"
             alt="Girl in grey costume"
           />
         </div>
@@ -34,6 +34,7 @@
 import FAQAccordion from "./FAQAccordion.vue";
 import ButtonCustomize from "./ButtonCustomize.vue";
 import Stars from "./Stars.vue";
+const base = import.meta.env.BASE_URL;
 </script>
 
 <style lang="scss">

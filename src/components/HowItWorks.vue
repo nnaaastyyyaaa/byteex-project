@@ -10,7 +10,7 @@
           @click="prev"
         >
           <svg width="14" height="26">
-            <use href="/icons/icons.svg#icon-arrow2" />
+            <use :href="`${base}icons/icons.svg#icon-arrow2`" />
           </svg>
         </button>
         <div
@@ -22,7 +22,7 @@
           class="steps__step step"
         >
           <svg :class="`step__svg--${index}`">
-            <use :href="`/icons/icons.svg#icon-${step.icon}`" />
+            <use :href="`${base}icons/icons.svg#icon-${step.icon}`" />
           </svg>
           <h2 class="step__title">
             {{ step.title }}
@@ -38,7 +38,7 @@
           @click="next"
         >
           <svg width="14" height="26">
-            <use href="/icons/icons.svg#icon-arrow2" />
+            <use :href="`${base}icons/icons.svg#icon-arrow2`" />
           </svg>
         </button>
       </div>
@@ -52,6 +52,8 @@
 import ButtonCustomize from "./ButtonCustomize.vue";
 import Stars from "./Stars.vue";
 import { ref } from "vue";
+
+const base = import.meta.env.BASE_URL;
 
 const current = ref(0);
 

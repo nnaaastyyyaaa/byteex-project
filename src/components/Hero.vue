@@ -1,7 +1,7 @@
 <template>
   <div class="header-container">
     <svg class="header-container__logo" width="178" height="32">
-      <use href="/icons/icons.svg#icon-logo" />
+      <use :href="`${base}icons/icons.svg#icon-logo`" />
     </svg>
     <div class="hero-content">
       <div class="hero-content__info info">
@@ -15,7 +15,7 @@
           >
             <div class="list-item__svg-container">
               <svg width="20" height="20" :class="`list-item__svg--${index}`">
-                <use :href="`/icons/icons.svg#icon-${feature.icon}`" />
+                <use :href="`${base}icons/icons.svg#icon-${feature.icon}`" />
               </svg>
             </div>
             <p class="list-item__text">
@@ -62,6 +62,8 @@ import ButtonCustomize from "./ButtonCustomize.vue";
 import Stars from "./Stars.vue";
 import Gallery from "./Gallery.vue";
 import { getEntries } from "../api/cms.js";
+
+const base = import.meta.env.BASE_URL;
 
 let review = ref([]);
 
