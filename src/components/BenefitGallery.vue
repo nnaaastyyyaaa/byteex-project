@@ -65,6 +65,10 @@ const current = computed(() => props.images[index.value]);
   gap: 20px;
   outline: none;
 
+  @media screen and (max-width: 786px) {
+    gap: 2px;
+  }
+
   &__arrow {
     border: none;
     background: none;
@@ -87,7 +91,7 @@ const current = computed(() => props.images[index.value]);
     }
 
     @media screen and (max-width: 481px) {
-      width: 250px;
+      width: 200px;
     }
   }
 

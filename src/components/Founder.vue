@@ -115,6 +115,7 @@ import FounderImages from "./FounderImages.vue";
 
     @media screen and (max-width: 786px) {
       max-width: 335px;
+      margin-left: 4px;
     }
   }
 

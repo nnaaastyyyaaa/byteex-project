@@ -55,6 +55,17 @@ const toggle = (i) => {
 .faq {
   max-width: 630px;
 
+  @media screen and (max-width: 1280px) {
+    font-size: 26px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 786px) {
+    max-width: 318px;
+  }
+
   &__title {
     margin: 0 0 56px;
     font-family: "Sofia Pro", sans-serif;

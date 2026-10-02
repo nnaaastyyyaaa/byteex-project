@@ -1,6 +1,6 @@
 <template>
   <div class="slider">
-    <button class="slider__arrow" type="button">
+    <button class="slider__arrow" type="button" @click="prev">
       <svg class="slider__icon" width="10" height="20">
         <use href="/icons/icons.svg#icon-arrow2" />
       </svg>
@@ -11,7 +11,7 @@
         v-for="(review, i) in reviews"
         :key="review.id"
         class="card"
-        :class="{ 'card--center': i === 1 }"
+        :class="{ 'card--center': i === 1, 'card--active': i === active }"
       >
         <div class="card__head">
           <div class="card__avatar"></div>
@@ -24,11 +24,22 @@
       </li>
     </ul>
 
-    <button class="slider__arrow" type="button">
+    <button class="slider__arrow" type="button" @click="next">
       <svg class="slider__icon slider__icon--next" width="10" height="20">
         <use href="/icons/icons.svg#icon-arrow2" />
       </svg>
     </button>
+  </div>
+  <div class="slider__dots">
+    <button
+      v-for="(review, i) in reviews"
+      :key="review.id"
+      type="button"
+      class="slider__dot"
+      :class="{ 'slider__dot--active': i === active }"
+      :aria-label="`Show review ${i + 1}`"
+      @click="active = i"
+    ></button>
   </div>
 </template>
 
@@ -53,6 +64,15 @@ const reviews = [
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed sollicitudin dolor, non sodales justo. Aenean eget aliquet mi.",
   },
 ];
+
+const active = ref(0);
+
+const next = () => {
+  active.value = (active.value + 1) % reviews.length;
+};
+const prev = () => {
+  active.value = (active.value - 1 + reviews.length) % reviews.length;
+};
 </script>
 
 <style scoped lang="scss">
@@ -62,6 +82,45 @@ const reviews = [
   justify-content: center;
   gap: 66px;
   margin-top: 76px;
+
+  @media screen and (max-width: 1280px) {
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  @media screen and (max-width: 480px) {
+    gap: 10px;
+    row-gap: 5px;
+    margin-top: 40px;
+  }
+
+  &__dots {
+    display: none;
+
+    @media screen and (max-width: 1280px) {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 5px;
+    }
+  }
+
+  &__dot {
+    @media screen and (max-width: 1280px) {
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: #c4c4c4;
+      cursor: pointer;
+
+      &--active {
+        background: #000;
+      }
+    }
+  }
 
   &__arrow {
     border: none;
@@ -79,6 +138,11 @@ const reviews = [
     justify-content: center;
     gap: 42px;
     list-style: none;
+
+    @media screen and (max-width: 1280px) {
+      gap: 40px;
+      padding: 0;
+    }
   }
 }
 
@@ -90,9 +154,40 @@ const reviews = [
   background: #fff;
   box-shadow: 0 3px 10px 1px rgba(0, 0, 0, 0.08);
 
+  @media screen and (max-width: 1280px) {
+    display: none;
+    box-sizing: border-box;
+    width: 300px;
+    height: auto;
+    padding: 28px 48px 36px;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 10px 20px 10px;
+    width: 200px;
+    height: auto;
+  }
+
   &--center {
     width: 338px;
     height: 252px;
+
+    @media screen and (max-width: 1280px) {
+      width: 400px;
+      height: auto;
+    }
+
+    @media screen and (max-width: 480px) {
+      padding: 18px 28px 18px;
+      width: 250px;
+      height: auto;
+    }
+  }
+
+  &--active {
+    @media screen and (max-width: 1280px) {
+      display: block;
+    }
   }
 
   &__head {
@@ -126,6 +221,16 @@ const reviews = [
     line-height: 23px;
     letter-spacing: 4%;
     color: #676869;
+
+    @media screen and (max-width: 1280px) {
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    @media screen and (max-width: 480px) {
+      font-size: 10px;
+      line-height: 15px;
+    }
   }
 }
 </style>

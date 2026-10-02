@@ -15,9 +15,9 @@ import Final from "./components/Final.vue";
   <Hero />
   <Benefits />
   <Founder />
-  <!--<HowItWorks />
+  <HowItWorks />
   <Reviews />
   <FAQ />
-  <Impact />
+  <!--<Impact />
   <Final />  -->
 </template>

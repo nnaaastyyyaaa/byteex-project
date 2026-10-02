@@ -3,9 +3,22 @@
     <div class="how-it-works-content">
       <h1 class="how-it-works-content__title">Comfort made easy</h1>
       <div class="how-it-works-content__steps steps">
+        <button
+          class="steps__arrow"
+          type="button"
+          aria-label="Previous step"
+          @click="prev"
+        >
+          <svg width="14" height="26">
+            <use href="/icons/icons.svg#icon-arrow2" />
+          </svg>
+        </button>
         <div
           v-for="(step, index) in steps"
-          :class="`steps__step--${index}`"
+          :class="[
+            `steps__step--${index}`,
+            { 'steps__step--inactive': index !== current },
+          ]"
           class="steps__step step"
         >
           <svg :class="`step__svg--${index}`">
@@ -18,6 +31,16 @@
             {{ step.text }}
           </p>
         </div>
+        <button
+          class="steps__arrow steps__arrow--next"
+          type="button"
+          aria-label="Next step"
+          @click="next"
+        >
+          <svg width="14" height="26">
+            <use href="/icons/icons.svg#icon-arrow2" />
+          </svg>
+        </button>
       </div>
       <ButtonCustomize svgSrc="arrow" class="how-it-works-content__button" />
       <Stars />
@@ -28,6 +51,16 @@
 <script setup>
 import ButtonCustomize from "./ButtonCustomize.vue";
 import Stars from "./Stars.vue";
+import { ref } from "vue";
+
+const current = ref(0);
+
+const next = () => {
+  current.value = (current.value + 1) % steps.length;
+};
+const prev = () => {
+  current.value = (current.value - 1 + steps.length) % steps.length;
+};
 
 const steps = [
   {
@@ -74,6 +107,30 @@ const steps = [
   margin-bottom: 56px;
   justify-content: center;
 
+  @media screen and (max-width: 1280px) {
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  &__arrow {
+    display: none;
+
+    @media screen and (max-width: 1280px) {
+      display: block;
+      flex-shrink: 0;
+      padding: 8px;
+      border: none;
+      background: none;
+      color: #676869;
+      cursor: pointer;
+
+      &--next {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
   &__step {
     width: 346px;
     height: 321px;
@@ -82,6 +139,19 @@ const steps = [
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media screen and (max-width: 1280px) {
+      flex: 0 1 346px;
+      min-width: 0;
+      width: auto;
+      padding: 0 24px;
+      box-sizing: border-box;
+      border-radius: 8px;
+
+      &--inactive {
+        display: none;
+      }
+    }
 
     &--0 {
       background-color: #f0eeef;

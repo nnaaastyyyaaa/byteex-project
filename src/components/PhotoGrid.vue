@@ -20,9 +20,23 @@
   padding: 0;
   list-style: none;
 
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    padding: 0 4px;
+  }
+
   &__item {
     aspect-ratio: 1 / 1;
     overflow: hidden;
+
+    @media screen and (max-width: 768px) {
+      aspect-ratio: 1 / 1.02;
+
+      &:nth-child(n + 9) {
+        display: none;
+      }
+    }
   }
 
   &__img {

@@ -34,6 +34,12 @@
     height: 310px;
     margin: 0;
   }
+
+  @media screen and (max-width: 480px) {
+    width: 200px;
+    height: 270px;
+    margin: 0;
+  }
 }
 
 .founder-images {
@@ -42,6 +48,11 @@
   flex-shrink: 0;
   @media screen and (max-width: 1280px) {
     width: 238px;
+    padding: 30px 55px 30px 55px;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 200px;
     padding: 30px 55px 30px 55px;
   }
 

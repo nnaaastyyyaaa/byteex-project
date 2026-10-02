@@ -24,17 +24,25 @@
           />
         </div>
       </div>
+      <ButtonCustomize svgSrc="arrow" class="faq-content__button" />
+      <Stars class="faq-content__stars" />
     </div>
   </div>
 </template>
 
 <script setup>
 import FAQAccordion from "./FAQAccordion.vue";
+import ButtonCustomize from "./ButtonCustomize.vue";
+import Stars from "./Stars.vue";
 </script>
 
 <style lang="scss">
 .faq-container {
   margin: 110px 105px 42px 211px;
+
+  @media screen and (max-width: 1280px) {
+    margin: 68px 20px 40px;
+  }
 }
 
 .faq-content {
@@ -46,6 +54,14 @@ import FAQAccordion from "./FAQAccordion.vue";
     letter-spacing: 4%;
     color: #01005b;
     margin-bottom: 54px;
+
+    @media screen and (max-width: 1280px) {
+      font-size: 26px;
+      display: block;
+      margin: 0 auto;
+      max-width: 318px;
+      text-align: center;
+    }
   }
   &__info {
     display: flex;
@@ -57,9 +73,30 @@ import FAQAccordion from "./FAQAccordion.vue";
     width: 402px;
     height: 620px;
   }
+
+  &__button {
+    display: none;
+    @media screen and (max-width: 786px) {
+      display: block;
+      margin: 40px auto 0;
+    }
+  }
+
+  &__stars {
+    display: none;
+    @media screen and (max-width: 786px) {
+      display: flex;
+    }
+  }
 }
 
 .collage {
+  display: block;
+
+  @media screen and (max-width: 1280px) {
+    display: none;
+  }
+
   &__block {
     position: absolute;
     background: linear-gradient(
@@ -88,7 +125,7 @@ import FAQAccordion from "./FAQAccordion.vue";
 
     &--right {
       top: -5px;
-      right: 0px;
+      left: 228px;
       width: 173px;
       height: 262px;
     }

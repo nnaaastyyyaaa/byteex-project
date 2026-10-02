@@ -46,6 +46,10 @@ const props = defineProps({
     @media screen and (max-width: 786px) {
       --w: 136px;
     }
+
+    @media screen and (max-width: 481px) {
+      --w: 130px;
+    }
   }
 
   &__band {
