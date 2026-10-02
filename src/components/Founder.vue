@@ -121,6 +121,7 @@ import FounderImages from "./FounderImages.vue";
 
   &__button {
     display: flex;
+    justify-content: center;
     @media screen and (max-width: 1280px) {
       display: none;
     }
